@@ -18,7 +18,7 @@ sklearn==0.0
 threadpoolctl==3.1.0
 Werkzeug==2.1.2
 
--q pyyaml==5.1
+pyyaml==5.1
 opencv-python==4.6.0.66
 # Torch
 #--find-links https://download.pytorch.org/whl/torch_stable.html
