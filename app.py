@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 
 #from detectron2.utils.logger import setup_logger
 #setup_logger()
-import cv2
+#import cv2
 #from google.colab.patches import cv2_imshow
 #from detectron2.engine import DefaultPredictor
 #from detectron2.config import get_cfg
