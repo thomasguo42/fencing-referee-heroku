@@ -4,6 +4,7 @@ import pandas as pd
 import pickle
 from flask import Flask, request, render_template
 
+import detectron2
 #from detectron2.utils.logger import setup_logger
 #setup_logger()
 #import cv2
