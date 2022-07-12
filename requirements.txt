@@ -21,7 +21,7 @@ filesplit
 
 pyyaml==5.1
 #opencv-python==4.6.0.66
-opencv-python-headless==4.2.0.32
+opencv-python-headless==4.6.0.66
 
 # Torch
 #--find-links https://download.pytorch.org/whl/torch_stable.html
