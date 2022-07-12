@@ -20,6 +20,9 @@ data_root=""
 @app.route('/')
 def home():
     print("fencing home1")
+    url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
+    model = wget.download(url)
+    print("got model")
     return render_template('index.html')
 
 def GetKeypointsFromPredictor():
