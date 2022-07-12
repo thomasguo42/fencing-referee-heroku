@@ -10,7 +10,7 @@ from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog
 
-import wget
+import boto3
 
 app = Flask(__name__)
 
@@ -21,9 +21,20 @@ data_root=""
 def home():
     print("fencing home1")
     url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
-    model = wget.download(url)
+    BUCKET="mymodel-heroku"
+    model = download_file("model_final.pth", BUCKET)
     print("got model")
     return render_template('index.html')
+
+def download_file(file_name, bucket):
+    """
+    Function to download a given file from an S3 bucket
+    """
+    s3 = boto3.resource('s3')
+    output = f"downloads/{file_name}"
+    s3.Bucket(bucket).download_file(file_name, output)
+
+    return output
 
 def GetKeypointsFromPredictor():
        
