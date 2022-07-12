@@ -13,15 +13,24 @@ from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog
 
+
+from filesplit.merge import Merge
+
 app = Flask(__name__)
 model_root=""
 data_root=""
 
 @app.route('/')
 def home():
+    print("fencing home")
     return render_template('index.html')
 
 def GetKeypointsFromPredictor():
+    
+    
+    merge = Merge(inputdir="./model_files", outputdir="./", outputfilename="model_final_out.pth")
+    merge.merge()
+    
     config_file_path = model_root+"config.yml"
 
     weights_path = model_root+"model_final.pth"
