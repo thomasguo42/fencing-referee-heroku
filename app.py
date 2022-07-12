@@ -5,14 +5,6 @@ import pickle
 from flask import Flask, request, render_template
 
 import detectron2
-from detectron2.utils.logger import setup_logger
-setup_logger()
-from google.colab.patches import cv2_imshow
-from detectron2.engine import DefaultPredictor
-from detectron2.config import get_cfg
-from detectron2.utils.visualizer import Visualizer
-from detectron2.data import MetadataCatalog
-
 
 from filesplit.merge import Merge
 
