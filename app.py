@@ -1,6 +1,4 @@
 import numpy as np
-import pandas as pd
-import pickle
 import cv2
 from flask import Flask, request, render_template
 
@@ -21,7 +19,7 @@ data_root=""
 
 @app.route('/')
 def home():
-    print("fencing home")
+    print("fencing home1")
     return render_template('index.html')
 
 def GetKeypointsFromPredictor():
@@ -50,21 +48,11 @@ def GetKeypointsFromPredictor():
     return keypoints
 
 # prediction function
-def ValuePredictor(to_predict_list):
-    to_predict = np.array(to_predict_list).reshape(1, 12)
-    loaded_model = pickle.load(open("adult_flask.pkl", "rb"))
-    print("start prediction")
-    result = loaded_model.predict(to_predict)
-    return result[0]
  
 @app.route('/result', methods = ['POST'])
 def result():
-    if request.method == 'POST':
-        to_predict_list = request.form.to_dict()
-        print("request.form.to_dict(): ", to_predict_list)
-        to_predict_list = list(to_predict_list.values())
-        to_predict_list = list(map(int, to_predict_list))
-        result = ValuePredictor(to_predict_list)  
+    if request.method == 'POST': 
+        result = 1 
         print("got result: ", result);
         if int(result)== 1:
             prediction ='Income more than 50K'
