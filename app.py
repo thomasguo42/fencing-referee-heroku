@@ -48,7 +48,7 @@ def getKeypointsFromPredictor(weights_path):
     im = cv2.imread(image_path)
     cfg = get_cfg()
     cfg.merge_from_file(config_file_path)
-
+    cfg.MODEL.DEVICE='cpu'
     cfg.MODEL.WEIGHTS = weights_path
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.90
     predictor = DefaultPredictor(cfg)
