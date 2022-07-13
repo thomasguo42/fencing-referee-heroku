@@ -33,7 +33,7 @@ def download_file(file_name, bucket):
     s3 = boto3.resource('s3')
     output = f"./{file_name}"
     s3.Bucket(bucket).download_file(file_name, output)
-    getKeypointsFromPredictor(output)
+    #getKeypointsFromPredictor(output)
     return output
 
 def getKeypointsFromPredictor(weights_path):
