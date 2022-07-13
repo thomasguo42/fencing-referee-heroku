@@ -73,10 +73,11 @@ def submit_form():
   avatar_url = request.form["avatar-url"]
 
   # Provide some procedure for storing the new details
-  update_account(username, full_name, avatar_url)
+  #update_account(username, full_name, avatar_url)
 
   # Redirect to the user's profile page, if appropriate
-  return redirect(url_for('profile'))
+  print("submit upload")
+  return render_template('index.html') #redirect(url_for('profile'))
 
 
 # Listen for GET requests to yourdomain.com/sign_s3/
