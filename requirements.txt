@@ -29,8 +29,8 @@ opencv-python-headless==4.6.0.66
 #torchvision==0.11.0+cpu
 
 -f https://download.pytorch.org/whl/cu110/torch_stable.html
-torch==1.10.0
-torchvision==0.11.0
+torch==1.10.0+cu102
+torchvision==0.11.0+cu102
 
 # Detectron
 #--find-links https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/index.html
