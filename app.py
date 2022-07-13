@@ -86,9 +86,10 @@ def submit_form():
 # Python 3 for this view.
 @app.route('/sign-s3/')
 def sign_s3():
+  print("run sign_s3()")
   # Load necessary information into the application
   S3_BUCKET = os.environ.get('S3_BUCKET')
-
+  print("S3_BUCKET: ", S3_BUCKET)
   # Load required data from the request
   file_name = request.args.get('file-name')
   file_type = request.args.get('file-type')
@@ -107,7 +108,7 @@ def sign_s3():
     ],
     ExpiresIn = 3600
   )
-
+  print("presigned_post: ", presigned_post)
   # Return the data to the client
   return json.dumps({
     'data': presigned_post,
