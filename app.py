@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
-from flask import Flask, request, render_template
+
+from flask import Flask, render_template, request, redirect, url_for
+import os, json, boto3
 
 import detectron2
 from detectron2.utils.logger import setup_logger
@@ -9,8 +11,6 @@ from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog
-
-import boto3
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def home():
     print("fencing home1")
     url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
     BUCKET="mymodel-heroku"
-    model = download_file("model_final.pth", BUCKET)
+    #model = download_file("model_final.pth", BUCKET)
     print("got model")
     return render_template('index.html')
 
@@ -57,6 +57,63 @@ def getKeypointsFromPredictor(weights_path):
     print("keypoints: ", keypoints)
     return keypoints
 
+# Listen for GET requests to yourdomain.com/account/
+@app.route("/account/")
+def account():
+  # Show the account-edit HTML page:
+  return render_template('account.html')
+
+
+# Listen for POST requests to yourdomain.com/submit_form/
+@app.route("/submit-form/", methods = ["POST"])
+def submit_form():
+  # Collect the data posted from the HTML form in account.html:
+  username = request.form["username"]
+  full_name = request.form["full-name"]
+  avatar_url = request.form["avatar-url"]
+
+  # Provide some procedure for storing the new details
+  update_account(username, full_name, avatar_url)
+
+  # Redirect to the user's profile page, if appropriate
+  return redirect(url_for('profile'))
+
+
+# Listen for GET requests to yourdomain.com/sign_s3/
+#
+# Please see https://gist.github.com/RyanBalfanz/f07d827a4818fda0db81 for an example using
+# Python 3 for this view.
+@app.route('/sign-s3/')
+def sign_s3():
+  # Load necessary information into the application
+  S3_BUCKET = os.environ.get('S3_BUCKET')
+
+  # Load required data from the request
+  file_name = request.args.get('file-name')
+  file_type = request.args.get('file-type')
+
+  # Initialise the S3 client
+  s3 = boto3.client('s3')
+
+  # Generate and return the presigned URL
+  presigned_post = s3.generate_presigned_post(
+    Bucket = S3_BUCKET,
+    Key = file_name,
+    Fields = {"acl": "public-read", "Content-Type": file_type},
+    Conditions = [
+      {"acl": "public-read"},
+      {"Content-Type": file_type}
+    ],
+    ExpiresIn = 3600
+  )
+
+  # Return the data to the client
+  return json.dumps({
+    'data': presigned_post,
+    'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
+  })
+    
+    
 # prediction function
  
 @app.route('/result', methods = ['POST'])
