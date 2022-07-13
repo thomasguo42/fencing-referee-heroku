@@ -17,23 +17,20 @@ opencv-python-headless==4.6.0.66
 #--find-links https://download.pytorch.org/whl/torch_stable.html
 #torch==1.10.1+cu111 
 #torchvision==0.11.2+cu111
-#-f https://download.pytorch.org/whl/torch_stable.html
-#-f https://download.pytorch.org/whl/torch_stable.html
-#torch==1.10+cpu
-#torchvision==0.11.2+cpu
-
-#torch==1.6.0+cpu
-#torchvision==0.7.0+cpu
 
 #--find-links https://download.pytorch.org/whl/torch_stable.html
 #https://download.pytorch.org/whl/cpu/torch-1.0.0-cp37-cp37m-linux_x86_64.whl
 #torch==1.0.0+cpu
 #torchvision==0.2.1
--f https://download.pytorch.org/whl/cpu/torch_stable.html
-#torch==1.12.0+cpu
-#torchvision==0.13.0+cpu
-torch==1.10.0+cpu
-torchvision==0.11.0+cpu
+
+# work for cpu
+#-f https://download.pytorch.org/whl/cpu/torch_stable.html
+#torch==1.10.0+cpu
+#torchvision==0.11.0+cpu
+
+-f https://download.pytorch.org/whl/cu110/torch_stable.html
+torch==1.10.0+cu110
+torchvision==0.11.0+cu110
 
 # Detectron
 #--find-links https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/index.html
