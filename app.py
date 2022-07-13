@@ -33,14 +33,14 @@ def download_file(file_name, bucket):
     s3 = boto3.resource('s3')
     output = f"./{file_name}"
     s3.Bucket(bucket).download_file(file_name, output)
-
+    getKeypointsFromPredictor(output)
     return output
 
-def GetKeypointsFromPredictor():
+def getKeypointsFromPredictor(weights_path):
        
     config_file_path = model_root+"config.yml"
 
-    weights_path = model_root+"model_final.pth"
+    #weights_path = model_root+"model_final.pth"
 
     image_path = data_root+"fencing.jpg"
 
