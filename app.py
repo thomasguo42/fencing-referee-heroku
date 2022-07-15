@@ -95,7 +95,7 @@ def sign_s3():
   file_type = request.args.get('file-type')
 
   print("start upload_file")
-  upload_file(file_name, S3_BUCKET)
+  #upload_file(file_name, S3_BUCKET)
   print("end upload_file")
     
   # Initialise the S3 client
