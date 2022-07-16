@@ -36,6 +36,8 @@ def createImagesFromVideos(video_list):
 
             # To stop duplicate images
             currentFrame += 1
+            if clip_count == 10:
+                break
 
         # When everything done, release the capture
         cap.release()
