@@ -8,9 +8,9 @@ def createImagesFromVideos(video_list):
     image_list = []
     for count, clip_name in enumerate(video_list):
         
-        print(clip_path+clip_name)
+        print(clip_name)
         # Playing video from file:
-        cap = cv2.VideoCapture(clip_path+clip_name)
+        cap = cv2.VideoCapture(clip_name)
         image_frame = 1
         currentFrame = 0
         clip_count = 0
