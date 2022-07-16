@@ -83,7 +83,7 @@ def upload_file():
       rgb_img = img.convert('RGB')
       with BytesIO() as buf:
         #rgb_img.save(buf, 'jpeg')
-	image_list[0].save(buf, 'jpeg')
+        image_list[0].save(buf, 'jpeg')
 	
         image_bytes = buf.getvalue()
         encoded_string = base64.b64encode(image_bytes).decode()         
