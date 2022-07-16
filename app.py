@@ -79,8 +79,8 @@ def upload_file():
       video_list = [f]
       image_list = createImagesFromVideos(video_list)
       #f.save(secure_filename(f.filename))
-      img = Image.open(image_list[0].stream)
-      rgb_img = img.convert('RGB')
+      #img = Image.open(image_list[0].stream)
+      #rgb_img = img.convert('RGB')
       with BytesIO() as buf:
         #rgb_img.save(buf, 'jpeg')
         image_list[0].save(buf, 'jpeg')
