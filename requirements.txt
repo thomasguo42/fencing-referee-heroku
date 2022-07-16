@@ -4,6 +4,7 @@ numpy==1.22.3
 filesplit
 boto3==1.9.235
 botocore==1.12.253
+pillow
 
 pyyaml==5.1
 #opencv-python==4.6.0.66
