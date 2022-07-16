@@ -41,6 +41,6 @@ def createImagesFromVideos(video_list):
 
         # When everything done, release the capture
         cap.release()
-        cv2.destroyAllWindows()
+        #cv2.destroyAllWindows()
 
     return image_list
