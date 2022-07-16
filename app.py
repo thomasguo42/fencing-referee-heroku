@@ -76,7 +76,7 @@ def upload_file():
       f = request.files['file']
       print("got the file: ", f)
       #f.save(secure_filename(f.filename))
-      img = Image.open(file.stream)
+      img = Image.open(f.stream)
       with BytesIO() as buf:
         img.save(buf, 'jpeg')
         image_bytes = buf.getvalue()
