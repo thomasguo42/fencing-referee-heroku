@@ -77,8 +77,9 @@ def upload_file():
       print("got the file: ", f)
       #f.save(secure_filename(f.filename))
       img = Image.open(f.stream)
+      rgb_img = img.convert('RGB')
       with BytesIO() as buf:
-        img.save(buf, 'jpeg')
+        rgb_img.save(buf, 'jpeg')
         image_bytes = buf.getvalue()
         encoded_string = base64.b64encode(image_bytes).decode()         
       return render_template('upload.html', img_data=encoded_string), 200
