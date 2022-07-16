@@ -55,8 +55,8 @@ def getKeypointsFromPredictor(weights_path, im):
     cfg.MODEL.DEVICE='cpu'
     cfg.MODEL.WEIGHTS = weights_path
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.90
-    #predictor = DefaultPredictor(cfg)
-    #outputs = predictor(im)
+    predictor = DefaultPredictor(cfg)
+    outputs = predictor(im)
     keypoints = "keypoints" #outputs["instances"].pred_keypoints
     print("keypoints: ", keypoints)
     return keypoints
