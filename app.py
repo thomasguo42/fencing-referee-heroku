@@ -77,9 +77,9 @@ def upload_file():
       f = request.files['file']
       print("got the file: ", f)
       video_list = [f]
-      createImagesFromVideos(video_list)
+      image_list = createImagesFromVideos(video_list)
       #f.save(secure_filename(f.filename))
-      img = Image.open(f.stream)
+      img = Image.open(image_list[0].stream)
       rgb_img = img.convert('RGB')
       with BytesIO() as buf:
         rgb_img.save(buf, 'jpeg')
