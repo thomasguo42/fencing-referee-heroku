@@ -3,6 +3,9 @@ import cv2
 
 from flask import Flask, render_template, request, redirect, url_for
 import os, json, boto3
+from PIL import Image
+import base64
+from io import BytesIO
 
 import detectron2
 from detectron2.utils.logger import setup_logger
@@ -73,7 +76,15 @@ def upload_file():
       f = request.files['file']
       print("got the file: ", f)
       #f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
+      img = Image.open(file.stream)
+      with BytesIO() as buf:
+	img.save(buf, 'jpeg')
+	image_bytes = buf.getvalue()
+	encoded_string = base64.b64encode(image_bytes).decode()         
+      return render_template('upload.html', img_data=encoded_string), 200
+   else:
+     return render_template('upload.html', img_data=""), 200
+     # return 'file uploaded successfully'
     
 # Listen for POST requests to yourdomain.com/submit_form/
 @app.route("/submit-form/", methods = ["POST"])
