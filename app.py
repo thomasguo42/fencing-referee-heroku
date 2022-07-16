@@ -40,7 +40,7 @@ def download_file(file_name, bucket):
     #getKeypointsFromPredictor(output)
     return output
 
-def getKeypointsFromPredictor(weights_path):
+def getKeypointsFromPredictor(weights_path, im):
        
     config_file_path = model_root+"config.yml"
 
@@ -49,15 +49,15 @@ def getKeypointsFromPredictor(weights_path):
     image_path = data_root+"fencing.jpg"
 
     model = config_file_path
-    im = cv2.imread(image_path)
+    #im = cv2.imread(image_path)
     cfg = get_cfg()
     cfg.merge_from_file(config_file_path)
     cfg.MODEL.DEVICE='cpu'
     cfg.MODEL.WEIGHTS = weights_path
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.90
-    predictor = DefaultPredictor(cfg)
-    outputs = predictor(im)
-    keypoints = outputs["instances"].pred_keypoints
+    #predictor = DefaultPredictor(cfg)
+    #outputs = predictor(im)
+    keypoints = "keypoints" #outputs["instances"].pred_keypoints
     print("keypoints: ", keypoints)
     return keypoints
 
@@ -78,6 +78,12 @@ def upload_file():
       print("got the file: ", f)
       video_list = [f]
       image_list = createImagesFromVideos(video_list)
+      url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
+      BUCKET="mymodel-heroku"
+      model = download_file("model_final.pth", BUCKET)
+      print("got model")
+      getKeypointsFromPredictor(model)
+
       #f.save(secure_filename(f.filename))
       #img = Image.open(image_list[0].stream)
       #rgb_img = img.convert('RGB')
