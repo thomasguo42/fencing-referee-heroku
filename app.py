@@ -78,9 +78,9 @@ def upload_file():
       #f.save(secure_filename(f.filename))
       img = Image.open(file.stream)
       with BytesIO() as buf:
-	img.save(buf, 'jpeg')
-	image_bytes = buf.getvalue()
-	encoded_string = base64.b64encode(image_bytes).decode()         
+        img.save(buf, 'jpeg')
+        image_bytes = buf.getvalue()
+        encoded_string = base64.b64encode(image_bytes).decode()         
       return render_template('upload.html', img_data=encoded_string), 200
    else:
      return render_template('upload.html', img_data=""), 200
