@@ -25,7 +25,7 @@ def createImagesFromVideos(video_list):
             if frame is None:
                 break
             #cv2.imwrite(image_path+name, frame)
-            image_list.append(name)
+            image_list.append(frame)
 
             # To stop duplicate images
             currentFrame += 1
