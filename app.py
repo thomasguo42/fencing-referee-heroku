@@ -63,7 +63,18 @@ def account():
   # Show the account-edit HTML page:
   return render_template('account.html')
 
-
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['file']
+      print("got the file: ", f)
+      #f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
+    
 # Listen for POST requests to yourdomain.com/submit_form/
 @app.route("/submit-form/", methods = ["POST"])
 def submit_form():
