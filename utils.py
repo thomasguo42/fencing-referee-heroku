@@ -14,7 +14,7 @@ def createImagesFromVideos(video_list):
         # Playing video from file:
         with tempfile.TemporaryDirectory() as td:
             temp_filename = Path(td) / 'uploaded_video'
-            uploaded_file.save(temp_filename)
+            clip_name.save(temp_filename)
             vidcap = cv2.VideoCapture(str(temp_filename))
             print("vidcap: ", vidcap)
         cap = cv2.VideoCapture(clip_name)
