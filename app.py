@@ -82,7 +82,7 @@ def upload_file():
       BUCKET="mymodel-heroku"
       model = download_file("model_final.pth", BUCKET)
       print("got model")
-      getKeypointsFromPredictor(model)
+      getKeypointsFromPredictor(model, image_list[0])
 
       #f.save(secure_filename(f.filename))
       #img = Image.open(image_list[0].stream)
