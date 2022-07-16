@@ -1,6 +1,8 @@
 
 import cv2
 import os
+from pathlib import Path
+import tempfile
 
 clip_path = "./data/"
 image_path = "../data/fencing/images/"
@@ -10,6 +12,11 @@ def createImagesFromVideos(video_list):
         
         print(clip_name)
         # Playing video from file:
+        with tempfile.TemporaryDirectory() as td:
+            temp_filename = Path(td) / 'uploaded_video'
+            uploaded_file.save(temp_filename)
+            vidcap = cv2.VideoCapture(str(temp_filename))
+            print("vidcap: ", vidcap)
         cap = cv2.VideoCapture(clip_name)
         image_frame = 1
         currentFrame = 0
