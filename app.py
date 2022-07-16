@@ -64,7 +64,7 @@ def account():
   return render_template('account.html')
 
 @app.route('/upload')
-def upload_file():
+def upload():
    return render_template('upload.html')
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
