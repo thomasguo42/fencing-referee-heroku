@@ -6,6 +6,7 @@ import os, json, boto3
 from PIL import Image
 import base64
 from io import BytesIO
+from utils import *
 
 import detectron2
 from detectron2.utils.logger import setup_logger
@@ -75,6 +76,8 @@ def upload_file():
    if request.method == 'POST':
       f = request.files['file']
       print("got the file: ", f)
+      video_list = [f]
+      createImagesFromVideos(video_list)
       #f.save(secure_filename(f.filename))
       img = Image.open(f.stream)
       rgb_img = img.convert('RGB')
