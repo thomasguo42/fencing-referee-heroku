@@ -24,8 +24,8 @@ data_root=""
 @app.route('/')
 def home():
     print("fencing home1")
-    url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
-    BUCKET="mymodel-heroku"
+    #url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
+    BUCKET="fencingreferee"
     #model = download_file("model_final.pth", BUCKET)
     print("got model")
     return render_template('index.html')
@@ -78,8 +78,8 @@ def upload_file():
       print("got the file: ", f)
       video_list = [f]
       image_list = createImagesFromVideos(video_list)
-      url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
-      BUCKET="mymodel-heroku"
+      #url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
+      BUCKET="fencingreferee"
       model = download_file("model_final.pth", BUCKET)
       print("got model")
       getKeypointsFromPredictor(model, image_list[0])
