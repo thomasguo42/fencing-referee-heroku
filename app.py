@@ -2,7 +2,10 @@ import numpy as np
 import cv2
 
 from flask import Flask, render_template, request, redirect, url_for
-import os, json, boto3
+import os, json, 
+
+
+
 from PIL import Image
 import base64
 from io import BytesIO
@@ -34,9 +37,9 @@ def download_file(file_name, bucket):
     """
     Function to download a given file from an S3 bucket
     """
-    s3 = boto3.resource('s3')
+    #s3 = boto3.resource('s3')
     output = f"./{file_name}"
-    s3.Bucket(bucket).download_file(file_name, output)
+    #s3.Bucket(bucket).download_file(file_name, output)
     #getKeypointsFromPredictor(output)
     return output
 
