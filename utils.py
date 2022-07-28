@@ -3,6 +3,7 @@ import cv2
 import os
 from pathlib import Path
 import tempfile
+from sklearn.preprocessing import PolynomialFeatures
 
 clip_path = "./data/"
 image_path = "../data/fencing/images/"
