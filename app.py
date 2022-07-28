@@ -83,7 +83,7 @@ def upload_file():
       image_list = createImagesFromVideos(video_list)
       #url = "http://s3.amazonaws.com/mymodel-heroku/model_final.pth"
       BUCKET="fencingreferee"
-      model = download_file("model_final.pth", BUCKET)
+      #model = download_file("model_final.pth", BUCKET)
       print("got model")
       getKeypointsFromPredictor(model, image_list[0])
 
@@ -203,3 +203,6 @@ if __name__ == "__main__":
     
 
 
+@app.route('/fencing')
+#def fencing():
+	#keypoint()
